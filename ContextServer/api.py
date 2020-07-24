@@ -15,6 +15,6 @@ def getArticles(keywords):
     for article in resp.json()['articles']:
         print(article['title'])
 
-    if resp.json()['articles'] == None:
+    if resp.json()['articles'] is None:
         return []
     return resp.json()['articles']
