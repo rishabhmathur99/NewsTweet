@@ -1,8 +1,6 @@
-from flask import Flask
-from flask import jsonify
-from flask import request
+from flask import Flask, jsonify, request
 
-from data_parse import process_data, identifyNounPhrases
+from keyword_decompose import get_keywords
 from api import getArticles
 
 app = Flask(__name__)
@@ -10,11 +8,9 @@ app = Flask(__name__)
 
 @app.route('/findContext', methods = ['GET', 'POST'])
 def findContext():
-    tagged_words, hashtags = process_data(request.data)
-    words = identifyNounPhrases(tagged_words)
-
-
+    words = get_keywords(request.data)
     articles = getArticles(words)
+    
     return jsonify(articles)
 
 

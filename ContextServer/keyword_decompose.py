@@ -28,3 +28,9 @@ def identifyNounPhrases(tagged):
     phrases[:] = [x for x in phrases if x is not ""]
 
     return phrases
+
+def get_keywords(string):
+    tagged_data, hashtags = process_data(string)
+    keywords = identifyNounPhrases(tagged_data)
+
+    return keywords
